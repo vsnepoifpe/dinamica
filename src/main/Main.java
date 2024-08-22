@@ -24,13 +24,14 @@ public class Main {
 
 				System.out.print("Digite o segundo numero: ");
 				double num2 = scanner.nextDouble();
+				double resultado = 0;
 
 				switch (opcao) {
 				case 1:
 					// Implementar lógica de soma aqui
 					break;
 				case 2:
-					// Implementar lógica de subtração aqui
+					resultado = num1 - num2;
 					break;
 				case 3:
 					// Implementar lógica de multiplicação aqui
@@ -39,6 +40,8 @@ public class Main {
 					// Implementar lógica de divisão aqui
 					break;
 				}
+				
+				System.out.println("Resultado: " + resultado);
 			} else if (opcao == 5) {
 				running = false;
 				System.out.println("Saindo...");

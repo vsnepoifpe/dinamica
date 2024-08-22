@@ -34,7 +34,7 @@ public class Main {
 					resultado = num1 - num2;
 					break;
 				case 3:
-					// Implementar lógica de multiplicação aqui
+					resultado = num1 * num2;
 					break;
 				case 4:
 					// Implementar lógica de divisão aqui

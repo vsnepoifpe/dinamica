@@ -26,33 +26,8 @@ public class Main {
                 System.out.print("Digite o primeiro numero: ");
                 double num1 = scanner.nextDouble();
 
-<<<<<<< HEAD
                 System.out.print("Digite o segundo numero: ");
                 double num2 = scanner.nextDouble();
-=======
-				switch (opcao) {
-				case 1:
-					// Implementar lógica de soma aqui
-					break;
-				case 2:
-					resultado = num1 - num2;
-					break;
-				case 3:
-					resultado = num1 * num2;
-					break;
-				case 4:
-					resultado = num1 / num2;
-					break;
-				}
-				
-				System.out.println("Resultado: " + resultado);
-			} else if (opcao == 5) {
-				running = false;
-				System.out.println("Saindo...");
-			} else {
-				System.out.println("Opcao invalida! Tente novamente.");
-			}
->>>>>>> 40aab8356354b2693334dbfaa624e135c220356d
 
                 switch (opcao) {
                     case 1:

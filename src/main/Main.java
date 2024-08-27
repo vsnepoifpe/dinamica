@@ -17,7 +17,8 @@ public class Main {
          System.out.println("6. Raiz quadrada (√x)");
          System.out.println("7. Inverso de um número (1/x)");
          System.out.println("8. Arco seno (asin x)");
-         System.out.println("9. Sair");
+         System.out.println("9. Módulo de um número (|x|)");
+         System.out.println("10. Sair");
          System.out.print("Escolha uma opcao: ");
          int opcao = scanner.nextInt();
 
@@ -94,10 +95,16 @@ public class Main {
                      System.out.println("Erro: O valor deve estar entre -1 e 1.");
                  }
                  break;
-                 
+              case 9:
+                    // Módulo de um número (|x|)
+                    System.out.print("Digite o número: ");
+                    num = scanner.nextDouble();
+                    resultado = Math.abs(num);
+                    System.out.println("Resultado: |" + num + "| = " + resultado);
+                    break;
                  
              //SAIDA
-             case 9:
+             case 10:
                  running = false;
                  System.out.println("Saindo...");
                  break;

@@ -18,7 +18,10 @@ public class Main {
          System.out.println("7. Inverso de um número (1/x)");
          System.out.println("8. Arco seno (asin x)");
          System.out.println("9. Módulo de um número (|x|)");
-         System.out.println("10. Sair");
+         System.out.println("10. Indicar número negativo");
+         System.out.println("11. retinar o valor do seno de um argulo");
+
+         System.out.println("17. Sair");
          System.out.print("Escolha uma opcao: ");
          int opcao = scanner.nextInt();
 
@@ -102,9 +105,26 @@ public class Main {
                     resultado = Math.abs(num);
                     System.out.println("Resultado: |" + num + "| = " + resultado);
                     break;
+              case 10:
+                  // Módulo de um número (|x|)
+                  System.out.print("Digite o número: ");
+                  num = scanner.nextDouble();
+                  if(num != 0) resultado = num* -1;
+                  else resultado = 0;
+                  System.out.println("Resultado: " + resultado);
+                  break;
+              case 11:
+                  // Módulo de um número (|x|)
+                  System.out.print("Digite o valor em graus: ");
+                  num = scanner.nextDouble();
+                  num = Math.toRadians(num);
+                  resultado = Math.sin(num);
+                  num = Math.toDegrees(num);
+                  System.out.println("Resultado: o seno de " + num + "  = " + resultado+ " graus");
+                  break;
                  
              //SAIDA
-             case 10:
+             case 17:
                  running = false;
                  System.out.println("Saindo...");
                  break;

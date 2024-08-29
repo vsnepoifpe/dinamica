@@ -1,6 +1,8 @@
 package main;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //Calculadora básica com as 4 operações e operações científicas
 public class Main {
@@ -24,6 +26,7 @@ public class Main {
             System.out.println("12. Tangente (tan x)");
             System.out.println("13. Logaritmo de base 10 (log10 x)");
             System.out.println("14. Cosseno de um angulo");
+            System.out.println("15. Avaliar expressão.");
 
 
             System.out.println("17. Sair");
@@ -170,6 +173,19 @@ public class Main {
                     System.out.println("Resultado: cos(" + anguloRadianos + " radianos) = " + resultado);
                     break;
 
+                case 15:
+                    // Avaliar expressão com parênteses
+                    scanner.nextLine(); // Consumir o caractere de nova linha pendente
+                    System.out.print("Digite a expressão: ");
+                    String expressao = scanner.nextLine();
+                    try {
+                        resultado = avaliarExpressao(expressao);
+                        System.out.println("Resultado: " + resultado);
+                    } catch (Exception e) {
+                        System.out.println("Erro ao avaliar a expressão: " + e.getMessage());
+                    }
+                    break;
+
 
                 //SAIDA
                 case 17:
@@ -184,5 +200,61 @@ public class Main {
         }
 
         scanner.close();
+    }
+
+    // Função para avaliar a expressão matemática
+    public static double avaliarExpressao(String expressao) throws Exception {
+
+        expressao = expressao.replaceAll("\\s", "");
+
+
+        Pattern pattern = Pattern.compile("\\(([^()]+)\\)");
+        Matcher matcher = pattern.matcher(expressao);
+
+        while (matcher.find()) {
+
+            String subExpressao = matcher.group(1);
+            double resultado = avaliarOperacoes(subExpressao);
+
+            expressao = expressao.replaceFirst(Pattern.quote(matcher.group()), Double.toString(resultado));
+            matcher = pattern.matcher(expressao);
+        }
+
+
+        return avaliarOperacoes(expressao);
+    }
+
+
+    public static double avaliarOperacoes(String expressao) throws Exception {
+        expressao = avaliarOperacao(expressao, "\\^", (a, b) -> Math.pow(a, b));
+
+        expressao = avaliarOperacao(expressao, "\\*", (a, b) -> a * b);
+        expressao = avaliarOperacao(expressao, "/", (a, b) -> a / b);
+        expressao = avaliarOperacao(expressao, "\\+", (a, b) -> a + b);
+        expressao = avaliarOperacao(expressao, "-", (a, b) -> a - b);
+
+
+        return Double.parseDouble(expressao);
+    }
+
+    // Função para avaliar operações específicas com base em regex
+    private static String avaliarOperacao(String expressao, String regex, Operacao operacao) throws Exception {
+        Pattern pattern = Pattern.compile("(-?\\d+\\.?\\d*)\\s*(" + regex + ")\\s*(-?\\d+\\.?\\d*)");
+        Matcher matcher = pattern.matcher(expressao);
+
+        while (matcher.find()) {
+            double num1 = Double.parseDouble(matcher.group(1));
+            double num2 = Double.parseDouble(matcher.group(3));
+            double resultado = operacao.executar(num1, num2);
+            expressao = expressao.replaceFirst(Pattern.quote(matcher.group()), Double.toString(resultado));
+            matcher = pattern.matcher(expressao);
+        }
+
+        return expressao;
+    }
+
+    // Interface funcional para as operações matemáticas
+    interface Operacao {
+        double executar(double a, double b);
     }
 }

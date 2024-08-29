@@ -20,6 +20,9 @@ public class Main {
          System.out.println("9. Módulo de um número (|x|)");
          System.out.println("10. Indicar número negativo");
          System.out.println("11. retinar o valor do seno de um argulo");
+         System.out.println("12. Tangente (tan x)");
+         System.out.println("13. Logaritmo de base 10 (log10 x)");
+
 
          System.out.println("17. Sair");
          System.out.print("Escolha uma opcao: ");
@@ -122,6 +125,26 @@ public class Main {
                   num = Math.toDegrees(num);
                   System.out.println("Resultado: o seno de " + num + "  = " + resultado+ " graus");
                   break;
+              case 12:
+            	    // Tangente (tan x)
+            	    System.out.print("Digite o valor do ângulo em graus: ");
+            	    double angulo = scanner.nextDouble();
+            	    double anguloRadianos = Math.toRadians(angulo);
+            	    resultado = Math.tan(anguloRadianos);
+            	    System.out.println("Resultado: tan(" + angulo + ") = " + resultado);
+            	    break;
+              case 13:
+                  // Logaritmo de base 10 (log10 x)
+                  System.out.print("Digite um número positivo: ");
+                  num = scanner.nextDouble();
+                  if (num > 0) {
+                      resultado = Math.log10(num);
+                      System.out.println("Resultado: log10(" + num + ") = " + resultado);
+                  } else {
+                      System.out.println("Erro: O número deve ser maior que zero.");
+                  }
+                  break;
+
                  
              //SAIDA
              case 17:

@@ -4,66 +4,69 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//Calculadora básica com as 4 operações e operações científicas
+// Calculadora básica com as 4 operações e operações científicas
 public class Main {
+    // Definindo o valor de π com precisão de 15 casas decimais
+    private static final double PI = 3.141592653589793;
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
         while (running) {
             System.out.println("===== Calculadora =====");
-            System.out.println("1. Adicao");
-            System.out.println("2. Subtracao");
-            System.out.println("3. Multiplicacao");
-            System.out.println("4. Divisao");
-            System.out.println("5. Elevado a potencia de (x^y)");
+            System.out.println("1. Adição");
+            System.out.println("2. Subtração");
+            System.out.println("3. Multiplicação");
+            System.out.println("4. Divisão");
+            System.out.println("5. Elevado a potência de (x^y)");
             System.out.println("6. Raiz quadrada (√x)");
             System.out.println("7. Inverso de um número (1/x)");
             System.out.println("8. Arco seno (asin x)");
             System.out.println("9. Módulo de um número (|x|)");
             System.out.println("10. Indicar número negativo");
-            System.out.println("11. retinar o valor do seno de um argulo");
+            System.out.println("11. Retornar o valor do seno de um ângulo");
             System.out.println("12. Tangente (tan x)");
             System.out.println("13. Logaritmo de base 10 (log10 x)");
-            System.out.println("14. Cosseno de um angulo");
+            System.out.println("14. Cosseno de um ângulo");
             System.out.println("15. Avaliar expressão.");
-
-
-            System.out.println("17. Sair");
-            System.out.print("Escolha uma opcao: ");
+            System.out.println("16. Calcular a área de um círculo usando π");
+            System.out.println("17. Arco cosseno (acos x)");
+            System.out.println("18. Sair");
+            System.out.print("Escolha uma opção: ");
             int opcao = scanner.nextInt();
 
             double resultado = 0;
 
             switch (opcao) {
                 case 1:
-                    System.out.print("Digite o primeiro numero: ");
+                    System.out.print("Digite o primeiro número: ");
                     double num1 = scanner.nextDouble();
-                    System.out.print("Digite o segundo numero: ");
+                    System.out.print("Digite o segundo número: ");
                     double num2 = scanner.nextDouble();
                     resultado = num1 + num2;
                     System.out.println("Resultado: " + resultado);
                     break;
                 case 2:
-                    System.out.print("Digite o primeiro numero: ");
+                    System.out.print("Digite o primeiro número: ");
                     num1 = scanner.nextDouble();
-                    System.out.print("Digite o segundo numero: ");
+                    System.out.print("Digite o segundo número: ");
                     num2 = scanner.nextDouble();
                     resultado = num1 - num2;
                     System.out.println("Resultado: " + resultado);
                     break;
                 case 3:
-                    System.out.print("Digite o primeiro numero: ");
+                    System.out.print("Digite o primeiro número: ");
                     num1 = scanner.nextDouble();
-                    System.out.print("Digite o segundo numero: ");
+                    System.out.print("Digite o segundo número: ");
                     num2 = scanner.nextDouble();
                     resultado = num1 * num2;
                     System.out.println("Resultado: " + resultado);
                     break;
                 case 4:
-                    System.out.print("Digite o primeiro numero: ");
+                    System.out.print("Digite o primeiro número: ");
                     num1 = scanner.nextDouble();
-                    System.out.print("Digite o segundo numero: ");
+                    System.out.print("Digite o segundo número: ");
                     num2 = scanner.nextDouble();
                     resultado = num1 / num2;
                     System.out.println("Resultado: " + resultado);
@@ -114,7 +117,7 @@ public class Main {
                     System.out.println("Resultado: |" + num + "| = " + resultado);
                     break;
                 case 10:
-                    // Módulo de um número (|x|)
+                    // Indicar número negativo
                     System.out.print("Digite o número: ");
                     num = scanner.nextDouble();
                     if (num != 0) resultado = num * -1;
@@ -122,13 +125,13 @@ public class Main {
                     System.out.println("Resultado: " + resultado);
                     break;
                 case 11:
-                    // Módulo de um número (|x|)
+                    // Retornar o valor do seno de um ângulo
                     System.out.print("Digite o valor em graus: ");
                     num = scanner.nextDouble();
                     num = Math.toRadians(num);
                     resultado = Math.sin(num);
                     num = Math.toDegrees(num);
-                    System.out.println("Resultado: o seno de " + num + "  = " + resultado + " graus");
+                    System.out.println("Resultado: o seno de " + num + " = " + resultado + " graus");
                     break;
                 case 12:
                     // Tangente (tan x)
@@ -148,6 +151,7 @@ public class Main {
                     } else {
                         System.out.println("Erro: O número deve ser maior que zero.");
                     }
+                    break;
                 case 14:
                     // Cosseno de um ângulo
                     System.out.println("Você deseja inserir o ângulo em:");
@@ -168,11 +172,9 @@ public class Main {
                         break;
                     }
 
-
                     resultado = Math.cos(anguloRadianos);
                     System.out.println("Resultado: cos(" + anguloRadianos + " radianos) = " + resultado);
                     break;
-
                 case 15:
                     // Avaliar expressão com parênteses
                     scanner.nextLine(); // Consumir o caractere de nova linha pendente
@@ -185,15 +187,32 @@ public class Main {
                         System.out.println("Erro ao avaliar a expressão: " + e.getMessage());
                     }
                     break;
-
-
-                //SAIDA
+                case 16:
+                    // Calcular a área de um círculo usando π
+                    System.out.print("Digite o raio do círculo: ");
+                    double raio = scanner.nextDouble();
+                    resultado = PI * Math.pow(raio, 2);
+                    System.out.println("Área do círculo com raio " + raio + " = " + resultado);
+                    break;
                 case 17:
+                    // Arco cosseno (acos x)
+                    System.out.print("Digite o valor do cosseno (entre -1 e 1): ");
+                    num = scanner.nextDouble();
+                    if (num >= -1 && num <= 1) {
+                        resultado = Math.acos(num);
+                        double resultadoGraus = Math.toDegrees(resultado);
+                        System.out.println("Resultado: arccos(" + num + ") = " + resultado + " radianos ou " + resultadoGraus + " graus");
+                    } else {
+                        System.out.println("Erro: O valor deve estar entre -1 e 1.");
+                    }
+                    break;
+                case 18:
+                    // Sair
                     running = false;
                     System.out.println("Saindo...");
                     break;
                 default:
-                    System.out.println("Opcao invalida! Tente novamente.");
+                    System.out.println("Opção inválida! Tente novamente.");
             }
 
             System.out.println();
@@ -204,57 +223,51 @@ public class Main {
 
     // Função para avaliar a expressão matemática
     public static double avaliarExpressao(String expressao) throws Exception {
-
         expressao = expressao.replaceAll("\\s", "");
-
-
         Pattern pattern = Pattern.compile("\\(([^()]+)\\)");
         Matcher matcher = pattern.matcher(expressao);
 
         while (matcher.find()) {
-
             String subExpressao = matcher.group(1);
             double resultado = avaliarOperacoes(subExpressao);
-
-            expressao = expressao.replaceFirst(Pattern.quote(matcher.group()), Double.toString(resultado));
+            expressao = expressao.replace(matcher.group(0), Double.toString(resultado));
             matcher = pattern.matcher(expressao);
         }
-
 
         return avaliarOperacoes(expressao);
     }
 
-
+    // Função para avaliar operações básicas
     public static double avaliarOperacoes(String expressao) throws Exception {
-        expressao = avaliarOperacao(expressao, "\\^", (a, b) -> Math.pow(a, b));
+        String[] tokens = expressao.split("(?=[-+*/])|(?<=[-+*/])");
+        double resultado = Double.parseDouble(tokens[0]);
 
-        expressao = avaliarOperacao(expressao, "\\*", (a, b) -> a * b);
-        expressao = avaliarOperacao(expressao, "/", (a, b) -> a / b);
-        expressao = avaliarOperacao(expressao, "\\+", (a, b) -> a + b);
-        expressao = avaliarOperacao(expressao, "-", (a, b) -> a - b);
+        for (int i = 1; i < tokens.length; i += 2) {
+            String operador = tokens[i];
+            double num = Double.parseDouble(tokens[i + 1]);
 
-
-        return Double.parseDouble(expressao);
-    }
-
-    // Função para avaliar operações específicas com base em regex
-    private static String avaliarOperacao(String expressao, String regex, Operacao operacao) throws Exception {
-        Pattern pattern = Pattern.compile("(-?\\d+\\.?\\d*)\\s*(" + regex + ")\\s*(-?\\d+\\.?\\d*)");
-        Matcher matcher = pattern.matcher(expressao);
-
-        while (matcher.find()) {
-            double num1 = Double.parseDouble(matcher.group(1));
-            double num2 = Double.parseDouble(matcher.group(3));
-            double resultado = operacao.executar(num1, num2);
-            expressao = expressao.replaceFirst(Pattern.quote(matcher.group()), Double.toString(resultado));
-            matcher = pattern.matcher(expressao);
+            switch (operador) {
+                case "+":
+                    resultado += num;
+                    break;
+                case "-":
+                    resultado -= num;
+                    break;
+                case "*":
+                    resultado *= num;
+                    break;
+                case "/":
+                    if (num != 0) {
+                        resultado /= num;
+                    } else {
+                        throw new Exception("Divisão por zero não é permitida.");
+                    }
+                    break;
+                default:
+                    throw new Exception("Operador inválido: " + operador);
+            }
         }
 
-        return expressao;
-    }
-
-    // Interface funcional para as operações matemáticas
-    interface Operacao {
-        double executar(double a, double b);
+        return resultado;
     }
 }
